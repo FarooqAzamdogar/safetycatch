@@ -1,8 +1,8 @@
-# ActionGuard engineering conventions
+# SafetyCatch engineering conventions
 
-These rules apply to every project in the ActionGuard suite. They exist so that eight separate repositories still feel like one product, and so that a security tool is itself built securely.
+These rules apply to every project in the SafetyCatch suite. They exist so that eight separate repositories still feel like one product, and so that a security tool is itself built securely.
 
-"ActionGuard" is a working name. Keep the name in one place per project (package name, manifest name, README title) so a rename is a search-and-replace.
+The project name is SafetyCatch (chosen 26 Nov 2026; it replaced the working name "ActionGuard"). Keep the name in one place per project (package name, manifest name, README title) so a future rename stays a search-and-replace.
 
 ## 1. Product principles
 
@@ -56,7 +56,7 @@ These rules apply to every project in the ActionGuard suite. They exist so that 
 - Prefer zero runtime dependencies. Each runtime dependency must be pure JS/WASM, permissively licensed (MIT, BSD, ISC, Apache-2.0, CC0), maintained (release or commits in the last 12 months), and justified in the README "Dependencies" section.
 - Pin exact versions (`pnpm add --save-exact`), commit `pnpm-lock.yaml`, and run `pnpm audit --prod` (report results).
 - Dev dependencies are limited to what is needed: `typescript`, `@types/node`, `esbuild`, and small pure-JS helpers when truly needed (for example a DOM shim for tests).
-- The shared engine is consumed as `"actionguard-engine": "link:../actionguard-engine"` (a live link, so engine changes are picked up without reinstalling) and imported from `"actionguard-engine"`. Build the engine (`pnpm run build` in its folder) before using it.
+- The shared engine is consumed as `"safetycatch-engine": "link:../safetycatch-engine"` (a live link, so engine changes are picked up without reinstalling) and imported from `"safetycatch-engine"`. Build the engine (`pnpm run build` in its folder) before using it.
 
 ## 5. Security rules for our own code
 
@@ -83,7 +83,7 @@ These rules apply to every project in the ActionGuard suite. They exist so that 
 
 ## 8. Licensing
 
-- Code: Apache-2.0. Copyright line: `Copyright 2026 The ActionGuard Authors`.
+- Code: Apache-2.0. Copyright line: `Copyright 2026 The SafetyCatch Authors`.
 - Rules and data we author: CC-BY-4.0 (say so in the rules folder README).
 - Third-party data keeps its license; record source, license, and attribution in NOTICE (for example Echap stalkerware-indicators, CC-BY-4.0).
 - Never bundle non-commercial data or models (CC BY-NC, research-only weights).
@@ -97,7 +97,7 @@ These rules apply to every project in the ActionGuard suite. They exist so that 
 ## 10. Git and publishing
 
 - Each project is its own repository: run `git init` in the project folder. **Do not commit, push, publish to npm, or upload to any store.** The owner decides when.
-- Do not touch other projects' folders, except reading `actionguard-engine`.
+- Do not touch other projects' folders, except reading `safetycatch-engine`.
 
 ## 11. Definition of done
 

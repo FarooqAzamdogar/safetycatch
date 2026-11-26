@@ -1,23 +1,23 @@
-# ActionGuard
+# SafetyCatch
 
 **Open-source, on-device protection for the moments scams and data theft depend on.**
 
-AI has made phishing, deepfake fraud and data theft cheaper and more convincing, but almost every attack still needs you (or your AI agent) to *do* something: paste a command, type a login code, scan a QR code, approve an app, share a photo, run a plugin. ActionGuard checks those actions privately on your own device and explains the risk in plain language.
+AI has made phishing, deepfake fraud and data theft cheaper and more convincing, but almost every attack still needs you (or your AI agent) to *do* something: paste a command, type a login code, scan a QR code, approve an app, share a photo, run a plugin. SafetyCatch checks those actions privately on your own device and explains the risk in plain language.
 
-> "ActionGuard" is a working name — it will be confirmed after a trademark search (see `docs/OPEN-SOURCE-PLAYBOOK.md`).
+> SafetyCatch was first developed under the working name "ActionGuard". See `docs/PUBLISHING.md` for the name check, licence and launch plan.
 
 ## The tools
 
 | Project | What it protects | Form | Status |
 |---|---|---|---|
-| [actionguard-engine](actionguard-engine/) | Shared detection rules for links, commands, logins, QR codes, secrets, downloads and scam messages | TypeScript library + CLI | v0.1.1: 1,174 tests pass; about 280 rules; cold start about 0.3 s; 7 extra languages (machine-translated, need native review) (26 Nov 2026) |
-| [actionguard-browser](actionguard-browser/) — **flagship** | Fake "paste this command" pages (ClickFix), device-code and OAuth phishing, look-alike login pages, AI-chat data leaks, risky downloads | Browser extension (Chrome, Edge, Firefox) | v0.1 built: 232 tests pass; 39/39 real-browser smoke checks pass in Chrome (26 Nov 2026). Firefox build never run |
-| [actionguard-mobile](actionguard-mobile/) | Links and messages shared from any app, safe QR scanning (link-device, wallet, payment and login-code QR traps) | Installable web app (Android and iPhone) | v0.1 built: 252 tests pass; 69/69 real-browser smoke checks pass (26 Nov 2026). Not yet tested on a real phone |
-| [actionguard-desktop](actionguard-desktop/) | Dangerous commands on the clipboard; browsers relaunched to steal cookies | Background guard (Windows first) | v0.1 built: 314 tests pass; a 32-check live smoke run passed once on Windows 11 (26 Nov 2026). Windows only |
-| [actionguard-agent](actionguard-agent/) | AI coding agents and MCP tools: config tampering, rug pulls, hidden instructions, misuse by malicious packages | Node CLI + Claude Code hook | v0.1 built: 736 tests pass; hook verified live on sample actions (26 Nov 2026). Not yet tested against live agents |
-| [actionguard-photo](actionguard-photo/) | Hidden location and device data in photos; faces before sharing; Content Credentials | Web app + CLI | v0.1 built: 117 tests pass; 23/23 real-browser smoke checks pass (26 Nov 2026) |
-| [actionguard-takedown](actionguard-takedown/) | Victims of leaked intimate images, sextortion or sexual deepfakes: evidence, local hashing, takedown notices, 48-hour tracking | Offline web app | v0.1 built: 135 tests pass; 17/17 real-browser smoke checks pass (26 Nov 2026). Legal templates need review by a lawyer before public use |
-| [actionguard-phone](actionguard-phone/) | Stalkerware, spyware-like settings and banking-trojan signs on Android | Node CLI over USB (ADB) | v0.1 built: 188 tests pass on simulated phone snapshots (26 Nov 2026). Not yet tested on a real phone |
+| [safetycatch-engine](safetycatch-engine/) | Shared detection rules for links, commands, logins, QR codes, secrets, downloads and scam messages | TypeScript library + CLI | v0.1.1: 1,174 tests pass; about 280 rules; cold start about 0.3 s; 7 extra languages (machine-translated, need native review) (26 Nov 2026) |
+| [safetycatch-browser-extension](safetycatch-browser-extension/) — **flagship** | Fake "paste this command" pages (ClickFix), device-code and OAuth phishing, look-alike login pages, AI-chat data leaks, risky downloads | Browser extension (Chrome, Edge, Firefox) | v0.1 built: 232 tests pass; 39/39 real-browser smoke checks pass in Chrome (26 Nov 2026). Firefox build never run |
+| [safetycatch-scam-checker](safetycatch-scam-checker/) | Links and messages shared from any app, safe QR scanning (link-device, wallet, payment and login-code QR traps) | Installable web app (Android and iPhone) | v0.1 built: 252 tests pass; 69/69 real-browser smoke checks pass (26 Nov 2026). Not yet tested on a real phone |
+| [safetycatch-clipboard-guard](safetycatch-clipboard-guard/) | Dangerous commands on the clipboard; browsers relaunched to steal cookies | Background guard (Windows first) | v0.1 built: 314 tests pass; a 32-check live smoke run passed once on Windows 11 (26 Nov 2026). Windows only |
+| [safetycatch-mcp-guard](safetycatch-mcp-guard/) | AI coding agents and MCP tools: config tampering, rug pulls, hidden instructions, misuse by malicious packages | Node CLI + Claude Code hook | v0.1 built: 736 tests pass; hook verified live on sample actions (26 Nov 2026). Not yet tested against live agents |
+| [safetycatch-photo-privacy](safetycatch-photo-privacy/) | Hidden location and device data in photos; faces before sharing; Content Credentials | Web app + CLI | v0.1 built: 117 tests pass; 23/23 real-browser smoke checks pass (26 Nov 2026) |
+| [safetycatch-takedown-kit](safetycatch-takedown-kit/) | Victims of leaked intimate images, sextortion or sexual deepfakes: evidence, local hashing, takedown notices, 48-hour tracking | Offline web app | v0.1 built: 135 tests pass; 17/17 real-browser smoke checks pass (26 Nov 2026). Legal templates need review by a lawyer before public use |
+| [safetycatch-stalkerware-check](safetycatch-stalkerware-check/) | Stalkerware, spyware-like settings and banking-trojan signs on Android | Node CLI over USB (ADB) | v0.1 built: 188 tests pass on simulated phone snapshots (26 Nov 2026). Not yet tested on a real phone |
 
 ## Principles
 
@@ -41,15 +41,15 @@ The script builds the engine first, then type-checks, tests and builds every oth
 Every tool is a **separate Git repository** in its own folder, so each one can have its own issues, releases, contributors and version number. This top folder is a small "suite" repository that holds only the shared documents and scripts; its `.gitignore` leaves the tool folders to their own repositories.
 
 ```
-actionguard/                  suite repository: README, LICENSE, docs/, scripts/
-├─ actionguard-engine/        own repository — shared detection library
-├─ actionguard-browser/       own repository — browser extension (flagship)
-├─ actionguard-mobile/        own repository — phone web app
-├─ actionguard-desktop/       own repository — desktop guard
-├─ actionguard-agent/         own repository — AI-agent guard
-├─ actionguard-photo/         own repository — photo privacy tool
-├─ actionguard-takedown/      own repository — image-abuse takedown kit
-└─ actionguard-phone/         own repository — Android phone checker
+safetycatch/                  suite repository: README, LICENSE, docs/, scripts/
+├─ safetycatch-engine/        own repository — shared detection library
+├─ safetycatch-browser-extension/       own repository — browser extension (flagship)
+├─ safetycatch-scam-checker/        own repository — phone web app
+├─ safetycatch-clipboard-guard/       own repository — desktop guard
+├─ safetycatch-mcp-guard/         own repository — AI-agent guard
+├─ safetycatch-photo-privacy/         own repository — photo privacy tool
+├─ safetycatch-takedown-kit/      own repository — image-abuse takedown kit
+└─ safetycatch-stalkerware-check/         own repository — Android phone checker
 ```
 
 Run one Git command in all of them at once:

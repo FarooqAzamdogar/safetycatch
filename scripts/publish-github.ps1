@@ -38,7 +38,7 @@ $repos = foreach ($m in [regex]::Matches($plan, '(?m)^\*\*(safetycatch[a-z-]*)\*
   if (-not $folder) { throw "No folder listed for $proposed in docs/PUBLISHING.md." }
   [pscustomobject]@{
     Name        = $Brand + $proposed.Substring('safetycatch'.Length)
-    Folder      = $(if ($folder -eq 'actionguard') { $root } else { Join-Path $root $folder })
+    Folder      = $(if ($folder -eq 'safetycatch') { $root } else { Join-Path $root $folder })
     Description = $m.Groups[2].Value.Trim()
     Topics      = @([regex]::Matches($m.Groups[3].Value, '`([^`]+)`') | ForEach-Object { $_.Groups[1].Value })
     Takedown    = ($proposed -eq 'safetycatch-takedown-kit')

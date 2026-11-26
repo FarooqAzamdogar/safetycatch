@@ -1,7 +1,7 @@
-# Runs the same git command in every ActionGuard repository:
+# Runs the same git command in every SafetyCatch repository:
 # the suite repository (this folder's parent) and each tool's repository.
 #
-# Examples (run from the actionguard folder):
+# Examples (run from the safetycatch folder):
 #   powershell -ExecutionPolicy Bypass -File .\scripts\git-all.ps1                      # short status of every repo
 #   powershell -ExecutionPolicy Bypass -File .\scripts\git-all.ps1 log --oneline -3     # last 3 commits of every repo
 #   powershell -ExecutionPolicy Bypass -File .\scripts\git-all.ps1 fetch --all          # fetch every repo

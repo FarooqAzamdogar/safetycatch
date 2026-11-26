@@ -1,6 +1,6 @@
 # Publishing plan: names, licences, descriptions, visibility
 
-Proposed brand: **SafetyCatch** (checked 26 Nov 2026: GitHub organisation name free, 0 repositories named `safetycatch`, npm package name free; `safetycatch.dev`, `.org`, `.app` and `.io` showed no DNS registration; `safetycatch.com` is registered by someone else). "ActionGuard" is only a working name: the `actionguard` GitHub account is taken and at least six repositories use the name, three of them AI-agent safety tools. Run a free trademark search (WIPO Global Brand Database and your national trademark office) before launch.
+Brand: **SafetyCatch** (chosen 26 Nov 2026; checked that day: GitHub organisation name free, 0 repositories named `safetycatch`, npm package name free; `safetycatch.dev`, `.org`, `.app` and `.io` showed no DNS registration; `safetycatch.com` is registered by someone else). The project was first developed under the working name "ActionGuard", which was dropped because that name is already used by several other projects, including AI-agent safety tools. Run a free trademark search (WIPO Global Brand Database and your national trademark office) before launch.
 
 The descriptions below do not contain the brand, so they work with any final name. `scripts/publish-github.ps1 -Brand <name>` builds the repository names from the brand.
 
@@ -29,17 +29,17 @@ Create them **private first** for one to two weeks, then switch all of them to p
 
 ## Repositories
 
-| Folder today | Repository | Visibility at launch |
+| Folder | Repository | Visibility at launch |
 |---|---|---|
-| `actionguard` (suite) | `safetycatch` | public |
-| `actionguard-engine` | `safetycatch-engine` | public |
-| `actionguard-browser` | `safetycatch-browser-extension` | public |
-| `actionguard-mobile` | `safetycatch-scam-checker` | public |
-| `actionguard-desktop` | `safetycatch-clipboard-guard` | public |
-| `actionguard-agent` | `safetycatch-mcp-guard` | public |
-| `actionguard-photo` | `safetycatch-photo-privacy` | public |
-| `actionguard-takedown` | `safetycatch-takedown-kit` | private until legal review |
-| `actionguard-phone` | `safetycatch-stalkerware-check` | public |
+| `safetycatch` (suite) | `safetycatch` | public |
+| `safetycatch-engine` | `safetycatch-engine` | public |
+| `safetycatch-browser-extension` | `safetycatch-browser-extension` | public |
+| `safetycatch-scam-checker` | `safetycatch-scam-checker` | public |
+| `safetycatch-clipboard-guard` | `safetycatch-clipboard-guard` | public |
+| `safetycatch-mcp-guard` | `safetycatch-mcp-guard` | public |
+| `safetycatch-photo-privacy` | `safetycatch-photo-privacy` | public |
+| `safetycatch-takedown-kit` | `safetycatch-takedown-kit` | private until legal review |
+| `safetycatch-stalkerware-check` | `safetycatch-stalkerware-check` | public |
 
 ### GitHub "About" descriptions and topics
 

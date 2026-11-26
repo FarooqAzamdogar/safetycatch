@@ -1,13 +1,13 @@
 # Each tool is its own Git repository. This suite repository only holds the
 # shared documents and scripts, so the tool folders are ignored here.
-/actionguard-engine/
-/actionguard-browser/
-/actionguard-mobile/
-/actionguard-desktop/
-/actionguard-agent/
-/actionguard-photo/
-/actionguard-takedown/
-/actionguard-phone/
+/safetycatch-engine/
+/safetycatch-browser-extension/
+/safetycatch-scam-checker/
+/safetycatch-clipboard-guard/
+/safetycatch-mcp-guard/
+/safetycatch-photo-privacy/
+/safetycatch-takedown-kit/
+/safetycatch-stalkerware-check/
 
 node_modules/
 *.log

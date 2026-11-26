@@ -1,5 +1,5 @@
-# Builds and tests every ActionGuard project in dependency order.
-# Usage (from the actionguard folder):  powershell -ExecutionPolicy Bypass -File .\scripts\check-all.ps1
+# Builds and tests every SafetyCatch project in dependency order.
+# Usage (from the safetycatch folder):  powershell -ExecutionPolicy Bypass -File .\scripts\check-all.ps1
 # Optional: -Install  runs a clean dependency install (pnpm install --frozen-lockfile) before checking.
 # Requires pnpm 11: npm install -g pnpm@11.29.0
 
@@ -10,14 +10,14 @@ $root = Split-Path -Parent $PSScriptRoot
 
 # The engine must be built first; the other projects import it.
 $order = @(
-  'actionguard-engine',
-  'actionguard-browser',
-  'actionguard-mobile',
-  'actionguard-desktop',
-  'actionguard-agent',
-  'actionguard-photo',
-  'actionguard-takedown',
-  'actionguard-phone'
+  'safetycatch-engine',
+  'safetycatch-browser-extension',
+  'safetycatch-scam-checker',
+  'safetycatch-clipboard-guard',
+  'safetycatch-mcp-guard',
+  'safetycatch-photo-privacy',
+  'safetycatch-takedown-kit',
+  'safetycatch-stalkerware-check'
 )
 
 $results = @()

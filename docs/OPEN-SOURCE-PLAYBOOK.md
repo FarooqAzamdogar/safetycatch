@@ -1,14 +1,14 @@
-# How to establish ActionGuard as a trusted open-source project
+# How to establish SafetyCatch as a trusted open-source project
 
-This is the operating plan for turning the eight ActionGuard repositories into a project people trust, contribute to, and fund. It is based on the research report ([RESEARCH-REPORT.md](RESEARCH-REPORT.md)), which found that most failed open-source security tools died from lost owners, hosting bills, or acquisitions — not from bad code. Every step below is designed to avoid those failure modes.
+This is the operating plan for turning the eight SafetyCatch repositories into a project people trust, contribute to, and fund. It is based on the research report ([RESEARCH-REPORT.md](RESEARCH-REPORT.md)), which found that most failed open-source security tools died from lost owners, hosting bills, or acquisitions — not from bad code. Every step below is designed to avoid those failure modes.
 
 ## 1. Before going public (week 0)
 
 | Step | Why | How |
 |---|---|---|
-| Pick the final name | "ActionGuard" is a working name | Search USPTO, EUIPO, WIPO Global Brand Database, GitHub, npm, Chrome Web Store, Play Store. Rename everywhere with one search-and-replace. |
+| Pick the final name | "SafetyCatch" is a working name | Search USPTO, EUIPO, WIPO Global Brand Database, GitHub, npm, Chrome Web Store, Play Store. Rename everywhere with one search-and-replace. |
 | Create a GitHub **organization** (not a personal account) | Open Source Collective and most funders require organization-owned repos; it survives if one person leaves | Org settings: require 2FA for all members; at least two owners. |
-| One repo per project | Matches the folder layout; independent releases | `<org>/actionguard-engine`, `<org>/actionguard-browser`, … |
+| One repo per project | Matches the folder layout; independent releases | `<org>/safetycatch-engine`, `<org>/safetycatch-browser-extension`, … |
 | Protect `main` | A security tool's release pipeline is its crown jewel (Trivy was compromised in March 2026 via CI) | Repository rulesets: pull request required, 1 approval (2 for release workflows), status checks required, no force-push, linear history. |
 | Turn on GitHub security features | Free for public repos | Private vulnerability reporting, Dependabot alerts + version updates, secret scanning + push protection, CodeQL default setup. |
 | Add OpenSSF Scorecard | Public, measurable supply-chain hygiene | `ossf/scorecard-action` pinned by SHA; show the badge in each README. |

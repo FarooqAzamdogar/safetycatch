@@ -1,23 +1,23 @@
-# ActionGuard suite architecture
+# SafetyCatch suite architecture
 
 ## The idea in one sentence
 
-Modern scams and data theft succeed at a **moment of action** — pasting a command, typing a login code, scanning a QR code, approving an app, sharing a photo, letting an AI agent run a skill. ActionGuard puts a small, private, explainable check in front of each of those moments.
+Modern scams and data theft succeed at a **moment of action** — pasting a command, typing a login code, scanning a QR code, approving an app, sharing a photo, letting an AI agent run a skill. SafetyCatch puts a small, private, explainable check in front of each of those moments.
 
 ## How the projects fit together
 
 ```
                          ┌──────────────────────────────┐
-                         │      actionguard-engine      │  TypeScript library + CLI
+                         │      safetycatch-engine      │  TypeScript library + CLI
                          │  rules · scoring · i18n      │  runs in browser, PWA, Node
                          │  url · command · page · auth │
                          │  qr · secrets · download ·   │
                          │  message analyzers           │
                          └──────────────┬───────────────┘
-              imports (file:../actionguard-engine, bundled with esbuild)
+              imports (file:../safetycatch-engine, bundled with esbuild)
         ┌───────────────┬───────────────┼────────────────┬─────────────────┐
         ▼               ▼               ▼                ▼                 │
- actionguard-browser  actionguard-   actionguard-     actionguard-         │
+ safetycatch-browser-extension  safetycatch-   safetycatch-     safetycatch-         │
  MV3 extension        mobile (PWA)   desktop (Node +  agent (Node CLI)     │
  Chrome/Edge/Firefox  share-to-check PowerShell)      AI-agent config      │
  paste guard, device- safe QR scan,  clipboard paste  seal, rug-pull       │
@@ -27,10 +27,10 @@ Modern scams and data theft succeed at a **moment of action** — pasting a comm
  risky downloads                                                           │
                                                                            │
  Standalone (no engine dependency):                                        │
- actionguard-photo     PWA + CLI: inspect/strip metadata, blur faces, C2PA │
- actionguard-takedown  offline PWA: NCII/deepfake evidence, PDQ hashing,   │
+ safetycatch-photo-privacy     PWA + CLI: inspect/strip metadata, blur faces, C2PA │
+ safetycatch-takedown-kit  offline PWA: NCII/deepfake evidence, PDQ hashing,   │
                        TAKE IT DOWN / DMCA / DSA notices, 48-hour tracker  │
- actionguard-phone     Node CLI over ADB: stalkerware and banking-trojan   │
+ safetycatch-stalkerware-check     Node CLI over ADB: stalkerware and banking-trojan   │
                        signs, survivor-safe report                         ┘
 ```
 

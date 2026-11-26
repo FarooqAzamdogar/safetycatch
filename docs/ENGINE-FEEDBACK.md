@@ -1,10 +1,10 @@
 # Engine feedback from the tools that use it
 
-Issues found in `actionguard-engine` v0.1.0 while building the other tools.
+Issues found in `safetycatch-engine` v0.1.0 while building the other tools.
 
 **Status: all 21 fixed in engine 0.1.1 (26 Nov 2026).** The consuming tools were re-tested against 0.1.1; the workarounds they added still work and can be removed in a later clean-up.
 
-## Reported by actionguard-mobile (26 Nov 2026)
+## Reported by safetycatch-scam-checker (26 Nov 2026)
 
 | # | Issue | Effect | Workaround in mobile |
 |---|---|---|---|
@@ -15,7 +15,7 @@ Issues found in `actionguard-engine` v0.1.0 while building the other tools.
 | 5 | Parameter trimming glues words together (for example "Example Store(amount…", "LOJA EXEMPLOin SAO PAULO") | Awkward wording in findings | None |
 | 6 | QR advice says "this link" for payloads that are not links | Confusing advice text | None |
 
-## Reported by actionguard-agent (26 Nov 2026)
+## Reported by safetycatch-mcp-guard (26 Nov 2026)
 
 | # | Issue | Effect | Workaround in agent |
 |---|---|---|---|
@@ -25,7 +25,7 @@ Issues found in `actionguard-engine` v0.1.0 while building the other tools.
 | 10 | `analyzeCommand` rates a credential file piped to a network tool as `safe` | Data-theft commands under-rated | Agent-specific rules cover it |
 | 11 | The README does not say that `extractUrls` returns objects | Documentation gap | None |
 
-## Reported by actionguard-browser (26 Nov 2026)
+## Reported by safetycatch-browser-extension (26 Nov 2026)
 
 | # | Issue | Effect | Workaround in browser |
 |---|---|---|---|
@@ -37,7 +37,7 @@ Issues found in `actionguard-engine` v0.1.0 while building the other tools.
 | 17 | `-WindowStyle Hidden -EncodedCommand` with a benign payload only scores medium | Hidden-window commands under-rated | None |
 | 18 | Platform and endpoint tables are not exported | Consumers duplicate the lists as pre-filters | Tests compare the copies against the engine's tables |
 
-## Reported by actionguard-desktop (26 Nov 2026)
+## Reported by safetycatch-clipboard-guard (26 Nov 2026)
 
 | # | Issue | Effect | Workaround in desktop |
 |---|---|---|---|
