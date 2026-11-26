@@ -66,6 +66,7 @@ When publishing, create one GitHub repository per folder under a single GitHub o
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — how the projects fit together and why TypeScript
 - [docs/CONVENTIONS.md](docs/CONVENTIONS.md) — engineering rules every project follows
 - [docs/OPEN-SOURCE-PLAYBOOK.md](docs/OPEN-SOURCE-PLAYBOOK.md) — how to launch, govern, secure and fund the project
+- [docs/PUBLISHING.md](docs/PUBLISHING.md) — proposed name, licence, GitHub descriptions and topics, and public/private plan for every repository (`scripts/publish-github.ps1` applies it)
 - [docs/RESEARCH-REPORT.md](docs/RESEARCH-REPORT.md) — the research behind these choices
 
 ## License
