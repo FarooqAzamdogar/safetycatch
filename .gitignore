@@ -1,0 +1,15 @@
+# Each tool is its own Git repository. This suite repository only holds the
+# shared documents and scripts, so the tool folders are ignored here.
+/actionguard-engine/
+/actionguard-browser/
+/actionguard-mobile/
+/actionguard-desktop/
+/actionguard-agent/
+/actionguard-photo/
+/actionguard-takedown/
+/actionguard-phone/
+
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
