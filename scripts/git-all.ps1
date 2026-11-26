@@ -10,6 +10,9 @@ param([Parameter(ValueFromRemainingArguments = $true)][string[]]$GitArgs)
 
 if (-not $GitArgs) { $GitArgs = @('status', '--short', '--branch') }
 
+# Use git.exe by name: on some PCs a stray file called "git" earlier in PATH shadows the real program.
+$git = (Get-Command git.exe -ErrorAction Stop).Source
+
 $root = Split-Path -Parent $PSScriptRoot
 $repos = @($root) + (Get-ChildItem -Path $root -Directory |
   Where-Object { Test-Path (Join-Path $_.FullName '.git') } |
@@ -18,5 +21,5 @@ $repos = @($root) + (Get-ChildItem -Path $root -Directory |
 
 foreach ($repo in $repos) {
   Write-Host "`n=== $(Split-Path -Leaf $repo) ===" -ForegroundColor Cyan
-  git -C $repo @GitArgs
+  & $git -C $repo @GitArgs
 }
