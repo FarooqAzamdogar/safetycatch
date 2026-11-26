@@ -1,6 +1,8 @@
 # Engine feedback from the tools that use it
 
-Issues found in `actionguard-engine` v0.1.0 while building the other tools. Each tool currently works around the ones that affect it. They are queued for an engine v0.1.1 fix round, after which the workarounds can be removed.
+Issues found in `actionguard-engine` v0.1.0 while building the other tools.
+
+**Status: all 21 fixed in engine 0.1.1 (26 Nov 2026).** The consuming tools were re-tested against 0.1.1; the workarounds they added still work and can be removed in a later clean-up.
 
 ## Reported by actionguard-mobile (26 Nov 2026)
 

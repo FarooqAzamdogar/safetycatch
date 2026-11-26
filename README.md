@@ -10,7 +10,7 @@ AI has made phishing, deepfake fraud and data theft cheaper and more convincing,
 
 | Project | What it protects | Form | Status |
 |---|---|---|---|
-| [actionguard-engine](actionguard-engine/) | Shared detection rules for links, commands, logins, QR codes, secrets, downloads and scam messages | TypeScript library + CLI | v0.1 built: 1,021 tests pass; about 270 rules; 7 extra languages (machine-translated, need native review) (26 Nov 2026) |
+| [actionguard-engine](actionguard-engine/) | Shared detection rules for links, commands, logins, QR codes, secrets, downloads and scam messages | TypeScript library + CLI | v0.1.1: 1,174 tests pass; about 280 rules; cold start about 0.3 s; 7 extra languages (machine-translated, need native review) (26 Nov 2026) |
 | [actionguard-browser](actionguard-browser/) — **flagship** | Fake "paste this command" pages (ClickFix), device-code and OAuth phishing, look-alike login pages, AI-chat data leaks, risky downloads | Browser extension (Chrome, Edge, Firefox) | v0.1 built: 232 tests pass; 39/39 real-browser smoke checks pass in Chrome (26 Nov 2026). Firefox build never run |
 | [actionguard-mobile](actionguard-mobile/) | Links and messages shared from any app, safe QR scanning (link-device, wallet, payment and login-code QR traps) | Installable web app (Android and iPhone) | v0.1 built: 252 tests pass; 69/69 real-browser smoke checks pass (26 Nov 2026). Not yet tested on a real phone |
 | [actionguard-desktop](actionguard-desktop/) | Dangerous commands on the clipboard; browsers relaunched to steal cookies | Background guard (Windows first) | v0.1 built: 314 tests pass; a 32-check live smoke run passed once on Windows 11 (26 Nov 2026). Windows only |
