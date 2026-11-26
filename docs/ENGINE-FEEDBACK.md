@@ -34,3 +34,11 @@ Issues found in `actionguard-engine` v0.1.0 while building the other tools. Each
 | 16 | Plain http plus an unusual port reaches "high" with no high finding | Over-scored http login pages | Shows a banner instead of a full-page wall |
 | 17 | `-WindowStyle Hidden -EncodedCommand` with a benign payload only scores medium | Hidden-window commands under-rated | None |
 | 18 | Platform and endpoint tables are not exported | Consumers duplicate the lists as pre-filters | Tests compare the copies against the engine's tables |
+
+## Reported by actionguard-desktop (26 Nov 2026)
+
+| # | Issue | Effect | Workaround in desktop |
+|---|---|---|---|
+| 19 | `cmd.fake-verification-text` rates ordinary prose containing "I am not a robot" as high | False alarm when someone copies normal text | Guard requires a command-like pre-filter match first |
+| 20 | `analyzeCommand` rates bare links high on `url.*` rules alone | Copying a suspicious link is treated like copying a command | Guard ignores verdicts that rest only on `url.*` rules |
+| 21 | `translate()` silently drops unfilled placeholders | Missing words in translated messages | Guard fills all parameters itself |
