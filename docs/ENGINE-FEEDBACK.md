@@ -22,3 +22,15 @@ Issues found in `actionguard-engine` v0.1.0 while building the other tools. Each
 | 9 | `scanSecrets` misses opaque `Authorization: Bearer …` values, and its redaction of JSON string values swallows the quotes | Some tokens not redacted; redacted JSON is malformed | Own redaction for config output |
 | 10 | `analyzeCommand` rates a credential file piped to a network tool as `safe` | Data-theft commands under-rated | Agent-specific rules cover it |
 | 11 | The README does not say that `extractUrls` returns objects | Documentation gap | None |
+
+## Reported by actionguard-browser (26 Nov 2026)
+
+| # | Issue | Effect | Workaround in browser |
+|---|---|---|---|
+| 12 | `analyzePageText` takes 1.5–2.5 s on its first call (same cold start as issues 1 and 7), under 10 ms after | Slow first page check | Skips page analysis when it cannot change the decision |
+| 13 | Page analysis has no rules for "download and run this file" instructions | Trusted-platform lures with download instructions missed | Small English-only heuristic in the extension |
+| 14 | `url.brand-impersonation` findings do not expose the brand's official domain | Warning cannot show the real address | Extension probes `<brand>.com` |
+| 15 | `scanSecrets().redacted` is all-or-nothing: it also hides low findings such as email addresses | Over-redaction when pasting into AI chats | None |
+| 16 | Plain http plus an unusual port reaches "high" with no high finding | Over-scored http login pages | Shows a banner instead of a full-page wall |
+| 17 | `-WindowStyle Hidden -EncodedCommand` with a benign payload only scores medium | Hidden-window commands under-rated | None |
+| 18 | Platform and endpoint tables are not exported | Consumers duplicate the lists as pre-filters | Tests compare the copies against the engine's tables |
