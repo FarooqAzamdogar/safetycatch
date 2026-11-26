@@ -28,7 +28,7 @@ AI has made phishing, deepfake fraud and data theft cheaper and more convincing,
 
 ## Build everything
 
-Requires Node.js 22.18 or newer.
+Requires Node.js 22.18 or newer and pnpm 11 (`npm install -g pnpm@11.29.0`). pnpm stores one shared copy of each package, so all eight projects together use about 89 MB of disk for dependencies.
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\check-all.ps1 -Install

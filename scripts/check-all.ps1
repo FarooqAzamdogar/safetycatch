@@ -1,6 +1,7 @@
 # Builds and tests every ActionGuard project in dependency order.
 # Usage (from the actionguard folder):  powershell -ExecutionPolicy Bypass -File .\scripts\check-all.ps1
-# Optional: -Install  runs a clean dependency install (npm ci) before checking.
+# Optional: -Install  runs a clean dependency install (pnpm install --frozen-lockfile) before checking.
+# Requires pnpm 11: npm install -g pnpm@11.29.0
 
 param([switch]$Install)
 
@@ -30,9 +31,9 @@ foreach ($name in $order) {
   Push-Location $dir
   try {
     if ($Install -or -not (Test-Path 'node_modules')) {
-      if (Test-Path 'package-lock.json') { npm ci --no-audit --no-fund } else { npm install --no-audit --no-fund }
+      pnpm install --frozen-lockfile
     }
-    npm run check
+    pnpm run check
     $ok = ($LASTEXITCODE -eq 0)
     $results += [pscustomobject]@{ Project = $name; Result = $(if ($ok) { 'PASS' } else { "FAIL (exit $LASTEXITCODE)" }) }
   } finally {

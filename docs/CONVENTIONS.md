@@ -29,13 +29,14 @@ These rules apply to every project in the ActionGuard suite. They exist so that 
   src/                 source
   test/                tests and fixtures
   .github/workflows/ci.yml
-  .gitignore  .editorconfig  package.json  package-lock.json  tsconfig.json
+  .gitignore  .editorconfig  package.json  pnpm-lock.yaml  pnpm-workspace.yaml  tsconfig.json
 ```
 
 ## 3. Toolchain (this dev machine)
 
 - Windows 11 with **Smart App Control ON**. Newly compiled, unsigned native executables and DLLs are blocked (Rust build scripts, Go binaries, unsigned npm native addons). Therefore:
   - All projects are **TypeScript on Node.js**. No native addons. Runtime dependencies must be pure JS or WASM.
+  - Package manager: **pnpm 11.29.0** (pinned with `"packageManager": "pnpm@11.29.0"`). pnpm 11 is plain JavaScript; pnpm 12 ships an unsigned native executable that Smart App Control would block. pnpm keeps one shared copy of each package and hard-links it into every project (the eight projects use about 89 MB of real disk instead of 389 MB with npm). Install it once with `npm install -g pnpm@11.29.0`.
   - Signed tools work: `node` 24.14, `npm` 11.9, `git`, `powershell.exe` 5.1 (FullLanguage mode), `esbuild` (works), TypeScript 7 `tsc` (works).
   - Rust 1.100 is installed (`$HOME/.cargo/bin`) but native builds fail here; do not use it.
 - Node engines field: `">=22.18"`. ESM only (`"type": "module"`).
@@ -46,14 +47,16 @@ These rules apply to every project in the ActionGuard suite. They exist so that 
   - `typecheck` = `tsc --noEmit`
   - `test` = node test runner
   - `build` = produce distributable output (dist/ or a packaged extension/PWA)
-  - `check` = typecheck + test + build. **Must pass before you report done.**
+  - `check` = `node --run typecheck && node --run test && node --run build`. **Must pass before you report done.**
+  - Timing tests (wall-clock budgets) do not belong in `test`; put them in a separate `perf` script and run them on an idle machine.
+  - Each repository has a `pnpm-workspace.yaml` with `allowBuilds:` so dependency install scripts never run unless a package is explicitly allowed.
 
 ## 4. Dependencies
 
 - Prefer zero runtime dependencies. Each runtime dependency must be pure JS/WASM, permissively licensed (MIT, BSD, ISC, Apache-2.0, CC0), maintained (release or commits in the last 12 months), and justified in the README "Dependencies" section.
-- Pin exact versions (`npm install --save-exact`), commit `package-lock.json`, and run `npm audit --omit=dev` (report results).
+- Pin exact versions (`pnpm add --save-exact`), commit `pnpm-lock.yaml`, and run `pnpm audit --prod` (report results).
 - Dev dependencies are limited to what is needed: `typescript`, `@types/node`, `esbuild`, and small pure-JS helpers when truly needed (for example a DOM shim for tests).
-- The shared engine is consumed as `"actionguard-engine": "file:../actionguard-engine"` and imported from `"actionguard-engine"`. Build the engine (`npm run build` in its folder) before using it.
+- The shared engine is consumed as `"actionguard-engine": "link:../actionguard-engine"` (a live link, so engine changes are picked up without reinstalling) and imported from `"actionguard-engine"`. Build the engine (`pnpm run build` in its folder) before using it.
 
 ## 5. Security rules for our own code
 
@@ -87,7 +90,7 @@ These rules apply to every project in the ActionGuard suite. They exist so that 
 
 ## 9. CI (GitHub Actions)
 
-- `.github/workflows/ci.yml`: on push and pull_request; top-level `permissions: contents: read`; matrix Node 22 and 24 on ubuntu-latest and windows-latest; steps: checkout, setup-node, `npm ci`, `npm run check`.
+- `.github/workflows/ci.yml`: on push and pull_request; top-level `permissions: contents: read`; matrix Node 22 and 24 on ubuntu-latest and windows-latest; steps: checkout, `pnpm/action-setup`, setup-node with `cache: pnpm`, `pnpm install --frozen-lockfile`, `pnpm run check`, `pnpm audit --prod`.
 - Pin every action to a full commit SHA with the version in a comment, for example `uses: actions/checkout@<40-char-sha> # v5.0.0`. Look SHAs up with `git ls-remote https://github.com/actions/checkout "refs/tags/v5*"`.
 - Projects that depend on the engine check it out and build it first (document the assumption that both repos sit side by side, or use a relative checkout path).
 
@@ -98,7 +101,7 @@ These rules apply to every project in the ActionGuard suite. They exist so that 
 
 ## 11. Definition of done
 
-1. `npm run check` passes (typecheck, tests, build), and you report the actual test counts.
+1. `pnpm run check` passes (typecheck, tests, build), and you report the actual test counts.
 2. README is complete and honest, including Limitations and Network use.
 3. All files in section 2 exist.
 4. ROADMAP.md lists the next milestones and new ideas found during prior-art checks.
