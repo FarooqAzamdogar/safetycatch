@@ -12,3 +12,13 @@ Issues found in `actionguard-engine` v0.1.0 while building the other tools. Each
 | 4 | `extractUrls` ignores app links such as `tg://login` inside messages | Account-takeover links in messages missed | App extracts app links itself |
 | 5 | Parameter trimming glues words together (for example "Example Store(amount…", "LOJA EXEMPLOin SAO PAULO") | Awkward wording in findings | None |
 | 6 | QR advice says "this link" for payloads that are not links | Confusing advice text | None |
+
+## Reported by actionguard-agent (26 Nov 2026)
+
+| # | Issue | Effect | Workaround in agent |
+|---|---|---|---|
+| 7 | Importing the engine costs about 0.9 s: `rx()` in `core/text.ts` compiles Unicode-property regular expressions at load time (this is the root cause of issue 1) | Every command-line run and hook call pays the start-up cost | Engine is loaded lazily, only when a shell command or URL must be checked |
+| 8 | `analyzeUrl('https://api.githubcopilot.com/mcp/')` returns medium `url.brand-in-domain` | False positive on an official GitHub address | Allow-listed locally |
+| 9 | `scanSecrets` misses opaque `Authorization: Bearer …` values, and its redaction of JSON string values swallows the quotes | Some tokens not redacted; redacted JSON is malformed | Own redaction for config output |
+| 10 | `analyzeCommand` rates a credential file piped to a network tool as `safe` | Data-theft commands under-rated | Agent-specific rules cover it |
+| 11 | The README does not say that `extractUrls` returns objects | Documentation gap | None |
